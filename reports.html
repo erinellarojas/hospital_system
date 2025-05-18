@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Management - Reports</title>
+  <link rel="stylesheet" href="../Css/reports.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>🏥 HMS</h2>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="patients.html">Patients</a>
+    <a href="appointments.html">Appointments</a>
+    <a href="laboratory.html">Laboratory</a>
+    <a href="billing.html">Billing</a>
+    <a href="pharmacy.html">Pharmacy</a>
+    <a href="reports.html" class="active">Reports</a>
+    <a href="users.html">Users</a>
+    <a href="settings.html">Settings</a>
+    <a href="#">Logout</a>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <h1>Reports</h1>
+
+    <div class="table-container">
+      <table id="reportsTable">
+        <thead>
+          <tr>
+            <th>Report ID</th>
+            <th>Patient</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>R001</td>
+            <td>Juan Dela Cruz</td>
+            <td>Blood Test</td>
+            <td>2025-08-12</td>
+            <td>Completed</td>
+            <td>
+              <button class="btn-view">View</button>
+              <button class="btn-download">Download</button>
+              <button class="btn-delete">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>R002</td>
+            <td>Erin Ella</td>
+            <td>X-Ray</td>
+            <td>2025-08-14</td>
+            <td>Pending</td>
+            <td>
+              <button class="btn-view">View</button>
+              <button class="btn-download">Download</button>
+              <button class="btn-delete">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script>
+    const table = document.getElementById("reportsTable").getElementsByTagName("tbody")[0];
+
+    function attachActions(row) {
+      row.querySelector(".btn-view").onclick = function() {
+        alert(`Viewing report: ${row.cells[0].textContent}`);
+      };
+      row.querySelector(".btn-download").onclick = function() {
+        alert(`Downloading report: ${row.cells[0].textContent}`);
+      };
+      row.querySelector(".btn-delete").onclick = function() {
+        if(confirm("Are you sure you want to delete this report?")) {
+          row.remove();
+        }
+      };
+    }
+
+    document.querySelectorAll("#reportsTable tbody tr").forEach(row => attachActions(row));
+  </script>
+
+</body>
+</html>
+
+<script src="../javascript/reports.js"></script>
+</body>
+</html>

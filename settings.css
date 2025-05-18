@@ -1,0 +1,132 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f6f9;
+  color: #2c3e50;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background: #2c3e50;
+  color: #ecf0f1;
+}
+
+/* Sidebar */
+.sidebar {
+  height: 100vh;
+  width: 220px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #2c3e50;
+  padding-top: 20px;
+  color: white;
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  margin: 5px 0;
+  border-radius: 4px;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: #34495e;
+}
+
+/* Main Content */
+.main {
+  margin-left: 220px;
+  padding: 20px;
+}
+
+form {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  max-width: 500px;
+}
+
+body.dark-mode form {
+  background: #34495e;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin-top: 20px;
+  color: #34495e;
+}
+
+body.dark-mode h3 {
+  color: #ecf0f1;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.toggle-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.btn-save {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .main {
+    margin-left: 0;
+  }
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode input[type="email"],
+body.dark-mode input[type="password"] {
+  background: #2c3e50;
+  color: #ecf0f1;
+  border: 1px solid #555;
+}
