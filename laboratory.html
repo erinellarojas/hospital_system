@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Management - Laboratory</title>
+  <link rel="stylesheet" href="../Css/laboratory.css">
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>🏥 HMS</h2>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="patients.html">Patients</a>
+    <a href="appointments.html">Appointments</a>
+    <a href="laboratory.html" class="active">Laboratory</a>
+    <a href="billing.html">Billing</a>
+    <a href="pharmacy.html">Pharmacy</a>
+    <a href="reports.html">Reports</a>
+    <a href="users.html">Users</a>
+    <a href="settings.html">Settings</a>
+    <a href="#">Logout</a>
+  </div>
+
+  
+  <div class="main">
+    <h1>Laboratory</h1>
+
+    
+    <div class="table-container">
+      <table id="labTable">
+        <thead>
+          <tr>
+            <th>Test ID</th>
+            <th>Patient</th>
+            <th>Test Type</th>
+            <th>Date</th>
+            <th>Result</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>L001</td>
+            <td>Juan Dela Cruz</td>
+            <td>Blood Test</td>
+            <td>2025-08-19</td>
+            <td>Normal</td>
+            <td>Completed</td>
+            <td>
+              <button class="btn-edit">Edit</button>
+              <button class="btn-delete">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>L002</td>
+            <td>Erin Ella</td>
+            <td>Urine Test</td>
+            <td>2025-08-20</td>
+            <td>Pending</td>
+            <td>Pending</td>
+            <td>
+              <button class="btn-edit">Edit</button>
+              <button class="btn-delete">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+    <form id="labForm">
+      <h3>Add New Lab Test</h3>
+
+      <label for="testId">Test ID:</label>
+      <input type="text" id="testId" required>
+
+      <label for="patientName">Patient Name:</label>
+      <input type="text" id="patientName" required>
+
+      <label for="testType">Test Type:</label>
+      <input type="text" id="testType" required>
+
+      <label for="date">Date:</label>
+      <input type="date" id="date" required>
+
+      <label for="result">Result:</label>
+      <input type="text" id="result" required>
+
+      <label for="status">Status:</label>
+      <select id="status" required>
+        <option value="Pending">Pending</option>
+        <option value="Completed">Completed</option>
+      </select>
+
+      <button type="submit" class="btn-add">➕ Add Lab Test</button>
+    </form>
+  </div>
+
+  <script>
+    const table = document.getElementById("labTable").getElementsByTagName("tbody")[0];
+    const form = document.getElementById("labForm");
+
+    
+    form.onsubmit = function(e) {
+      e.preventDefault();
+
+      const testId = document.getElementById("testId").value;
+      const patientName = document.getElementById("patientName").value;
+      const testType = document.getElementById("testType").value;
+      const date = document.getElementById("date").value;
+      const result = document.getElementById("result").value;
+      const status = document.getElementById("status").value;
+
+      const row = table.insertRow();
+      row.innerHTML = `
+        <td>${testId}</td>
+        <td>${patientName}</td>
+        <td>${testType}</td>
+        <td>${date}</td>
+        <td>${result}</td>
+        <td>${status}</td>
+        <td>
+          <button class="btn-edit">Edit</button>
+          <button class="btn-delete">Delete</button>
+        </td>
+      `;
+
+      attachActions(row);
+      form.reset();
+    };
+
+    function attachActions(row) {
+      row.querySelector(".btn-edit").onclick = function() {
+        const patientName = prompt("Edit Patient Name:", row.cells[1].textContent);
+        const testType = prompt("Edit Test Type:", row.cells[2].textContent);
+        const date = prompt("Edit Date (YYYY-MM-DD):", row.cells[3].textContent);
+        const result = prompt("Edit Result:", row.cells[4].textContent);
+        const status = prompt("Edit Status:", row.cells[5].textContent);
+
+        if(patientName) row.cells[1].textContent = patientName;
+        if(testType) row.cells[2].textContent = testType;
+        if(date) row.cells[3].textContent = date;
+        if(result) row.cells[4].textContent = result;
+        if(status) row.cells[5].textContent = status;
+      };
+
+      row.querySelector(".btn-delete").onclick = function() {
+        if(confirm("Are you sure you want to delete this lab test?")) {
+          row.remove();
+        }
+      };
+    }
+
+    document.querySelectorAll("#labTable tbody tr").forEach(row => attachActions(row));
+  </script>
+
+</body>
+</html>
+
+<script src="../javascript/laboratory.js"></script>
+</body>
+</html>
